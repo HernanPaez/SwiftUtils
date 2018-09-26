@@ -42,14 +42,13 @@ class ISLoadingView : UIView {
     var errorContainer:UIView?
     var errorMessageLabel:UILabel?
     var errorButtonAction:(()->())?
-    var errorButton:BorderedButton?
+    var errorButton:ISBorderedButton?
     
-    var errorMessageFont = UIFont.systemFont(ofSize: 17)
-    var errorButtonFont = UIFont.italicSystemFont(ofSize: 16)
+    var errorMessageFont = UIFont.appFontWithSize(size: 20)
+    var errorButtonFont = UIFont.appFontLightWithSize(size: 18)
     
     var errorMessageColor = UIColor.lightGray
     var errorButtonColor = UIColor.lightGray
-    var loadingColor = UIColor.lightGray
     
     private var topConstraint:NSLayoutConstraint?
     private var trailingConstraint:NSLayoutConstraint?
@@ -97,7 +96,7 @@ class ISLoadingView : UIView {
         
         backgroundColor = UIColor.clear
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = loadingColor
+        activityIndicator.color = UIColor.white
         addSubview(activityIndicator)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -116,11 +115,11 @@ class ISLoadingView : UIView {
         super.awakeFromNib()
     }
     
-    @objc func buttonAction() {
+  @objc func buttonAction() {
         errorButtonAction?()
     }
     
-    func setErrorMessage(text:String? = nil, retryButtonTitle:String? = nil, action:(()->())? = nil) {
+    func setErrorMessage(text:String? = nil, retryButtonTitle:String? = nil, action:((Void) -> Void)? = nil) {
         //Remove the existing error container if needed
         isHidden = false
         if let errorContainer = errorContainer {
@@ -146,7 +145,7 @@ class ISLoadingView : UIView {
         
         //If we set a button, we need to create it and set the button action
         if let retryButtonTitle = retryButtonTitle {
-            errorButton = BorderedButton(type: .custom)
+            errorButton = ISBorderedButton(type: .custom)
             errorButton?.borderWidth = 0.5
             errorButton?.borderColor = errorButtonColor
             errorButton?.setTitleColor(errorButtonColor, for: .normal)
@@ -166,7 +165,7 @@ class ISLoadingView : UIView {
         
         let errorMessageContainerCenterY = NSLayoutConstraint(item: errorMessageContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         let errorMessageContainerCenterX = NSLayoutConstraint(item: errorMessageContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-        
+
         let errorMessageContainerWidth = NSLayoutConstraint(item: errorMessageContainer, attribute: .width, relatedBy: .lessThanOrEqual, toItem: self, attribute: .width, multiplier: 1, constant: 0)
         self.addConstraints([errorMessageContainerCenterY, errorMessageContainerCenterX, errorMessageContainerWidth])
         
@@ -181,7 +180,7 @@ class ISLoadingView : UIView {
             let buttonBottomConstraint = NSLayoutConstraint(item: errorButton, attribute: .bottom, relatedBy: .equal, toItem: errorMessageContainer, attribute: .bottom, multiplier: 1, constant: 0)
             let buttonHeightConstraint = NSLayoutConstraint(item: errorButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
             errorButton.cornerRadius = buttonHeightConstraint.constant / 2
-            
+
             errorMessageContainer.addConstraints([labelTopConstraint, labelTrailingConstraint, labelLeadingConstraint, buttonTopConstraint, buttonTrailingConstraint, buttonLeadingConstraint, buttonBottomConstraint])
             errorButton.addConstraints([buttonHeightConstraint])
         }
@@ -216,7 +215,7 @@ class ISLoadingView : UIView {
         activityIndicator.startAnimating()
     }
     
-    func stopAnimating(error:String? = nil, retryButtonTitle:String? = nil, action:(() -> ())? = nil) {
+    func stopAnimating(error:String? = nil, retryButtonTitle:String? = nil, action:((Void) -> Void)? = nil) {
         activityIndicator.stopAnimating()
         
         if error == nil && retryButtonTitle == nil && action == nil {

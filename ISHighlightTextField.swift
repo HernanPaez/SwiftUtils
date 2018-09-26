@@ -1,5 +1,6 @@
 //
 //  ISHighlightTextField.swift
+//  Certicamara
 //
 //  Created by Hernan Paez on 18/5/16.
 //  Copyright © 2016 InfinixSoft. All rights reserved.
@@ -7,14 +8,13 @@
 
 import UIKit
 
-@IBDesignable class HighlightTextField: UITextField {
+@IBDesignable class ISHighlightTextField: UITextField {
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     @IBInspectable var defaultColor:UIColor = UIColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1)
     @IBInspectable var highlightedColor:UIColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)
-    @IBInspectable var lineHeight:CGFloat = 2
-
+    
     fileprivate var color:UIColor?
     
     @IBInspectable var leftPadding: CGFloat = 0.0 {
@@ -34,7 +34,7 @@ import UIKit
         // Drawing code
 
         //// Rectangle Drawing
-        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height - lineHeight, width: self.frame.size.width, height: lineHeight))
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height - 2, width: self.frame.size.width, height: 2))
         (color ?? defaultColor).setFill()
         rectanglePath.fill()
     }

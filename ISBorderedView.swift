@@ -1,5 +1,6 @@
 //
 //  BorderedView.swift
+//  Accord Salud
 //
 //  Created by Hernan Paez on 9/6/15.
 //  Copyright © 2015 Infinixsoft. All rights reserved.
@@ -8,14 +9,11 @@
 import UIKit
 
 @IBDesignable
-class BorderedView: UIView {
-    
+class ISBorderedView: UIView {
     @IBInspectable var bottomLeftCornerRadius:CGFloat = 0.0
     @IBInspectable var bottomRightCornerRadius:CGFloat = 0.0
     @IBInspectable var topLeftCornerRadius:CGFloat = 0.0
     @IBInspectable var topRightCornerRadius:CGFloat = 0.0
-    @IBInspectable var borderColor:UIColor? = nil
-    @IBInspectable var borderWidth:CGFloat = 0.0
 
     private var borderView:UIView?
     
@@ -30,7 +28,7 @@ class BorderedView: UIView {
         
         if bottomLeftCornerRadius != 0 {
             path.move(to: CGPoint(x: bottomLeftCornerRadius, y: rect.size.height))
-            path.addArc(withCenter: CGPoint(x: bottomLeftCornerRadius, y: rect.size.height - bottomLeftCornerRadius), radius: bottomLeftCornerRadius, startAngle: -270 * CGFloat.pi/180, endAngle: -180 * CGFloat.pi/180, clockwise: true)
+            path.addArc(withCenter: CGPoint(x: bottomLeftCornerRadius, y: rect.size.height - bottomLeftCornerRadius), radius: bottomLeftCornerRadius, startAngle: -270 * CGFloat(M_PI)/180, endAngle: -180 * CGFloat(M_PI)/180, clockwise: true)
         }
         else {
             path.move(to: CGPoint(x: 0, y: rect.size.height))
@@ -38,7 +36,7 @@ class BorderedView: UIView {
         
         if topLeftCornerRadius != 0 {
             path.addLine(to: CGPoint(x: 0, y: topLeftCornerRadius))
-            path.addArc(withCenter: CGPoint(x: topLeftCornerRadius, y: topLeftCornerRadius), radius: topLeftCornerRadius, startAngle: -180 * CGFloat.pi/180, endAngle: -90 * CGFloat.pi/180, clockwise: true)
+            path.addArc(withCenter: CGPoint(x: topLeftCornerRadius, y: topLeftCornerRadius), radius: topLeftCornerRadius, startAngle: -180 * CGFloat(M_PI)/180, endAngle: -90 * CGFloat(M_PI)/180, clockwise: true)
         }
         else {
             path.addLine(to: CGPoint.zero)
@@ -46,7 +44,7 @@ class BorderedView: UIView {
         
         if topRightCornerRadius != 0 {
             path.addLine(to: CGPoint(x: rect.size.width - topRightCornerRadius, y: 0))
-            path.addArc(withCenter: CGPoint(x: rect.size.width - topRightCornerRadius, y: topRightCornerRadius), radius: topRightCornerRadius, startAngle: -90 * CGFloat.pi/180, endAngle: 0 * CGFloat.pi/180, clockwise: true)
+            path.addArc(withCenter: CGPoint(x: rect.size.width - topRightCornerRadius, y: topRightCornerRadius), radius: topRightCornerRadius, startAngle: -90 * CGFloat(M_PI)/180, endAngle: 0 * CGFloat(M_PI)/180, clockwise: true)
         }
         else {
             path.addLine(to: CGPoint(x: rect.size.width, y:0))
@@ -54,7 +52,7 @@ class BorderedView: UIView {
         
         if bottomRightCornerRadius != 0 {
             path.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height - bottomRightCornerRadius))
-            path.addArc(withCenter: CGPoint(x: rect.size.width - bottomRightCornerRadius, y: rect.size.height - bottomRightCornerRadius), radius: bottomRightCornerRadius, startAngle: 0 * CGFloat.pi/180, endAngle: 90 * CGFloat.pi/180, clockwise: true)
+            path.addArc(withCenter: CGPoint(x: rect.size.width - bottomRightCornerRadius, y: rect.size.height - bottomRightCornerRadius), radius: bottomRightCornerRadius, startAngle: 0 * CGFloat(M_PI)/180, endAngle: 90 * CGFloat(M_PI)/180, clockwise: true)
         }
         else {
             path.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height))
