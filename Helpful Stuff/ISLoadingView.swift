@@ -37,7 +37,7 @@ extension UIView {
 }
 
 class ISLoadingView : UIView {
-    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     var errorContainer:UIView?
     var errorMessageLabel:UILabel?

@@ -183,7 +183,7 @@ class UIValidatedTextField : UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.leftView = _leftView
-        self.leftViewMode = UITextField.ViewMode.always
+        self.leftViewMode = UITextFieldViewMode.always
     }
     
     override func draw(_ rect: CGRect) {

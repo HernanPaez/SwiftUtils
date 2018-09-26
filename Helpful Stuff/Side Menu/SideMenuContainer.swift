@@ -9,7 +9,7 @@
 import UIKit
 
 fileprivate extension NSLayoutConstraint {
-    convenience init(attribute:NSLayoutConstraint.Attribute, ofView l_view:UIView, equalToView r_view:UIView? = nil, withConstant constant:CGFloat) {
+    convenience init(attribute:NSLayoutAttribute, ofView l_view:UIView, equalToView r_view:UIView? = nil, withConstant constant:CGFloat) {
         self.init(item: l_view,
                            attribute: attribute,
                            relatedBy: .equal,
@@ -28,7 +28,7 @@ fileprivate extension NSLayoutConstraint {
         ]
     }
     
-    static func constraints(withProperties properties:[NSLayoutConstraint.Attribute], forView l_view:UIView, andView r_view:UIView?, withConstant constant:CGFloat = 0) -> [NSLayoutConstraint] {
+    static func constraints(withProperties properties:[NSLayoutAttribute], forView l_view:UIView, andView r_view:UIView?, withConstant constant:CGFloat = 0) -> [NSLayoutConstraint] {
         
         return properties.map({ (attribute) -> NSLayoutConstraint in
             return NSLayoutConstraint(attribute: attribute,
@@ -122,10 +122,10 @@ extension UIViewController {
     
     func set(leftController:UIViewController) {
         self._leftController?.view.removeFromSuperview()
-        self._leftController?.removeFromParent()
+        self._leftController?.removeFromParentViewController()
         
         self._leftController = leftController
-        self.addChild(leftController)
+        self.addChildViewController(leftController)
         
         let childView:UIView = leftController.view
         childView.translatesAutoresizingMaskIntoConstraints = false
@@ -139,10 +139,10 @@ extension UIViewController {
     
     func set(centerController:UIViewController) {
         self._centerController?.view.removeFromSuperview()
-        self._centerController?.removeFromParent()
+        self._centerController?.removeFromParentViewController()
         
         self._centerController = centerController
-        self.addChild(centerController)
+        self.addChildViewController(centerController)
         
         let childView:UIView = centerController.view
         childView.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +161,7 @@ extension UIViewController {
     
     func showLeftController(animated:Bool = true) {
         _centerContainer.isUserInteractionEnabled = false
-        _leftContainerView.superview?.bringSubviewToFront(_leftContainerView)
+        _leftContainerView.superview?.bringSubview(toFront: _leftContainerView)
         _leftContainerView.isHidden = false
         
         if let constraint = _leftControllerLeadingConstraint {

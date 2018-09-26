@@ -30,14 +30,14 @@ extension UIImage {
         switch encoding {
             
         case .png:
-            guard let _imageData = self.pngData() else {
+            guard let _imageData = UIImagePNGRepresentation(self) else {
                 throw C4EncodingError.errorGettingImageData
             }
             imageData = _imageData
             prefix = "data:image/png;base64,"
             
         case .jpeg(let compression):
-            guard let _imageData = self.jpegData(compressionQuality: compression) else {
+            guard let _imageData = UIImageJPEGRepresentation(self, compression) else {
                 throw C4EncodingError.errorGettingImageData
             }
             imageData = _imageData

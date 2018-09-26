@@ -15,8 +15,8 @@ class ScrollCardCollectionViewLayout: UICollectionViewFlowLayout {
     
     override func prepare() {
         super.prepare()
-        if collectionView?.decelerationRate != UIScrollView.DecelerationRate.fast {
-            collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
+        if collectionView?.decelerationRate != UIScrollViewDecelerationRateFast {
+            collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
         }
         self.scrollDirection = .horizontal
         self.minimumLineSpacing = -(self.itemSize.width * 0.10)

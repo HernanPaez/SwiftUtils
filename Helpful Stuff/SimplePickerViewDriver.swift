@@ -22,12 +22,6 @@ class SimplePickerViewDriver : NSObject {
     private let picker:UIPickerView
     private let disposeBag = DisposeBag()
     
-    var defaultTitle:String = "-------------" {
-        didSet {
-            picker.reloadAllComponents()
-        }
-    }
-
     init(picker:UIPickerView) {
         self.picker = picker
         super.init()
@@ -58,7 +52,7 @@ extension SimplePickerViewDriver : UIPickerViewDelegate, UIPickerViewDataSource 
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard row != 0 else {
-            return defaultTitle
+            return "-------------"
         }
         return items.value[row-1].title
     }
