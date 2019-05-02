@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import Fabric
-import Crashlytics
 
 class Logger {
     enum Priority : String {
@@ -29,8 +27,6 @@ class Logger {
     
     static func start() {
         //Fabric
-        Fabric.with([Crashlytics.self])
-        
 //        //Hockey App
 //        BITHockeyManager.shared().configure(withIdentifier: "44abbd079c254eb9a7988ae792932dc0")
 //        BITHockeyManager.shared().start()
@@ -50,12 +46,6 @@ class Logger {
         
         print(fullMessage)
         #endif
-        if let tag = tag {
-            CLSLogv("[%@] %@", getVaList([tag, message]))
-        }
-        else {
-            CLSLogv("%@", getVaList([message]))
-        }
     }
     
 //    static func startTrackingUser(_ user:User) {

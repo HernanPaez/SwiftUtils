@@ -26,12 +26,12 @@ extension ObjectMapperCustomTransform {
     
     public init() {}
     
-    open func transformFromJSON(_ value: Any?) -> Date? {
+    public func transformFromJSON(_ value: Any?) -> Date? {
       guard let timeStr = value as? String else { return nil }
       return ObjectMapperCustomTransform.StringDate.dateFormatter.date(from: timeStr)
     }
     
-    open func transformToJSON(_ value: Date?) -> String? {
+    public func transformToJSON(_ value: Date?) -> String? {
       guard let date = value else { return nil }
       return ObjectMapperCustomTransform.StringDate.dateFormatter.string(from: date)
     }

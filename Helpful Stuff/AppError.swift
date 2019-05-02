@@ -37,7 +37,7 @@ class APPError : Error {
 extension APPError {
     
     /// Default Error (i.e: Unknown Error)
-    static let DEFAULT = APPError(message: "Unkown Error", id:"UNKNOWN_ERROR")
+    static let DEFAULT = APPError(message: "Something has gone wrong", id:"UNKNOWN_ERROR")
     
     /// Error Used to notify the user that his token is invalid and needs to login again
     static let TOKEN_ERROR = APPError(message: "Your user has been logged out.", id:"NOT_AUTHENTICATED")
@@ -51,6 +51,9 @@ extension APPError {
     /// Error used to notify about a JSON Decoding error, typically a missing property in json
     static let JSON_DECODE_ERROR = APPError(message: "The response can't be decoded", id:"JSON_DECODE_ERROR")
 
+    static let CONNECTION_ERROR = APPError(message: "There was a connection error. Please try again", id:"CONNECTION_ERROR")
+    
+    static let WRONG_CREDENTIALS_ERROR = APPError(message: "The credentials given are invalid. Please try again", id:"WRONG_CREDENTIALS")
 }
 
 extension APPError : Equatable, Hashable {
@@ -58,9 +61,10 @@ extension APPError : Equatable, Hashable {
         return lhs.id == rhs.id
     }
     
-    var hashValue: Int {
-        return id.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
+    
 }
 
 extension APPError {

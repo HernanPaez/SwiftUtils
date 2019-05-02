@@ -44,8 +44,8 @@ class ISLoadingView : UIView {
     var errorButtonAction:(()->())?
     var errorButton:BorderedButton?
     
-    var errorMessageFont = UIFont.systemFont(ofSize: 17)
-    var errorButtonFont = UIFont.italicSystemFont(ofSize: 16)
+    var errorMessageFont = UIFont(name: "CircularStd-Medium", size: 17)!
+    var errorButtonFont = UIFont(name: "CircularStd-Medium", size: 16)!
     
     var errorMessageColor = UIColor.lightGray
     var errorButtonColor = UIColor.lightGray
